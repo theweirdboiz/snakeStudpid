@@ -1,0 +1,9 @@
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+@mixin setVisible($pointerEvents, $visibility, $opacity) {
+  pointer-events: $pointerEvents;
+  visibility: $visibility;
+  opacity: $opacity;
+}

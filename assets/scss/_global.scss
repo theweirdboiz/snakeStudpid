@@ -1,0 +1,340 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  color: $textColor;
+  background-color: $bgColor;
+  font-family: "VT323", monospace;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select,
+label {
+  font: inherit;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  background-color: #181825;
+  &.expand {
+    border: 10px solid $obstacleColor;
+    border-radius: 4px;
+  }
+}
+input:checked + label {
+  color: $secondColor;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.restart,
+.back,
+.timer,
+.prev,
+.next {
+  font-size: 2.4rem;
+  transform: rotate(90deg);
+}
+.back {
+  margin-top: 6rem;
+  button {
+    color: $textColor;
+    background-color: $secondColor;
+  }
+  button:active,
+  button:hover {
+    background-color: rgba($secondColor, $alpha: 0.6);
+  }
+}
+.author {
+  margin-top: 4rem;
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  &__name {
+    font-size: 4rem;
+  }
+}
+
+.screen__header {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  font-size: 2.4rem;
+}
+
+.screen__game-over,
+.screen__game-setting,
+.screen__game {
+  display: none;
+  transition: all linear 0.4s;
+}
+
+.screen__game-menu {
+  display: flex;
+  transition: all linear 0.4s;
+}
+
+.screen__game-over,
+.screen__game-setting,
+.screen__game-menu {
+  // display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 2.4rem;
+  transition: all linear 0.25s;
+}
+
+.notice,
+.btn__new-game,
+.btn__setting {
+  letter-spacing: 0.6px;
+  text-transform: capitalize;
+}
+
+.notice,
+.game-title {
+  font-size: 4.6rem;
+  letter-spacing: 2px;
+}
+
+.option {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 0 2rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  &__next {
+    animation: showEffect 1.5s 1 forwards ease-in;
+  }
+  &__space,
+  &__arrow {
+    color: $textColor;
+    background-color: $secondColor;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  &__arrow {
+    border-radius: 4px;
+  }
+  &__sound {
+    transition: all ease-out 0.6s;
+  }
+  &__sound.expand {
+    position: relative;
+    transition: all ease-out 0.6s;
+    &::before {
+      position: absolute;
+      content: "";
+      @include size(100%, 2.4px);
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: $bgColor;
+      transition: all ease-out 0.6s;
+    }
+  }
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rules {
+  @include setVisible(none, hidden, 0);
+  position: fixed;
+  border: 2px solid $textColor;
+  border-radius: 2rem;
+  padding: 2rem;
+  font-size: 2.4rem;
+  transition: all ease-in-out 0.75s;
+  background-color: $bgColor;
+  box-shadow: rgba(206, 206, 212, 0.2) 0px 7px 29px 0px;
+  &__title {
+    font-size: 4rem;
+    font-weight: 600;
+  }
+  &__contents {
+    margin: 2.4rem 0;
+  }
+  &__item {
+    list-style-type: square;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  &__item h3 {
+    text-decoration: underline;
+    font-weight: 700;
+  }
+  &__item:nth-child(5),
+  &__item:last-of-type {
+    margin-top: 2rem;
+  }
+
+  &.expand {
+    @include setVisible(visible, visible, 1);
+    transition: all ease-in-out 0.75s;
+  }
+}
+
+.rule {
+  &__snake {
+    background-color: $secondColor;
+  }
+  &__food {
+    background-color: $thirdColor;
+  }
+  &__boom {
+    background-color: $boomColor;
+  }
+  &__port {
+    background-color: $portColor;
+  }
+  &__obstacles {
+    background-color: $obstacleColor;
+  }
+  &__meteorite {
+    background-color: $meteoriteColor;
+  }
+  &__snake,
+  &__food,
+  &__obstacles,
+  &__boom,
+  &__port,
+  &__meteorite {
+    display: inline-block;
+    border: 0.4px solid $textColor;
+    @include size(2rem);
+  }
+  &__message {
+    display: flex;
+    h4:last-of-type {
+      margin-left: 0.5rem;
+      color: $meteoriteColor;
+    }
+  }
+}
+.message {
+  &__bonus {
+    position: absolute;
+    content: "";
+    font-size: 2rem;
+    bottom: -3.2rem;
+    left: 11rem;
+    margin-right: 2rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: all linear 0.4s;
+  }
+  &__bonus.expand {
+    visibility: visible;
+    opacity: 1;
+    transition: all linear 0.4s;
+  }
+}
+.welcome {
+  position: fixed;
+  background-color: $primaryColor;
+  height: 100vh;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  font-size: 2rem;
+  &.expand {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}
+.tagcloud {
+  font-size: 2rem;
+  font-weight: 650;
+  height: 100%;
+  width: 100%;
+  &--item:hover {
+    color: $textColor;
+  }
+}
+@keyframes showEffect {
+  0% {
+    opacity: 0;
+    pointer-events: none;
+    cursor: none;
+  }
+  100% {
+    opacity: 1;
+    pointer-events: visible;
+    cursor: pointer;
+  }
+}

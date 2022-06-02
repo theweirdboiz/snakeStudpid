@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="./assets/image/favicon.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <title>Snake Game</title>
+  </head>
+  <body>
+    <div class="container screen">
+      <header class="screen__header">
+        <h1 class="game-title">Snake</h1>
+        <p class="level">Level: <span class="level__value"></span></p>
+        <p class="score">
+          <span>Score: </span><span class="score__value"></span>
+        </p>
+      </header>
+      <!-- Game on -->
+      <section class="wrapper screen__game">
+        <div class="option">
+          <div class="restart">
+            <button class="btn btn__restart btn__second">Restart</button>
+          </div>
+          <div class="back">
+            <button class="btn btn__back btn__second">Home</button>
+          </div>
+        </div>
+        <div class="message__bonus">
+          Bonus in: <span class="message__bonus-value">2</span>ms
+        </div>
+        <canvas class="board" width="400" height="400"></canvas>
+        <div class="option">
+          <div class="prev">
+            <button class="btn btn__second btn__prev-level">Prev</button>
+          </div>
+          <div class="next">
+            <button class="btn btn__second btn__next-level">Next</button>
+          </div>
+          <!-- <div class="minutes">00</div>
+          <span>:</span>
+          <div class="seconds">00</div> -->
+        </div>
+      </section>
+      <!-- Game over -->
+      <section class="screen__game-over">
+        <h2 class="notice">game over</h2>
+        <p class="high-score">
+          High score: <span class="high-score__value">00</span>
+        </p>
+        <p class="message">
+          Press <span class="btn btn__space">space</span> to begin again
+        </p>
+        <div class="option">
+          <button href="" class="btn btn__new-game">New game</button>
+          <button href="" class="btn btn__setting btn__second">Levels</button>
+          <button href="" class="btn btn__rule btn__second">Rules</button>
+          <button href="" class="btn btn__sound btn__second">Sound</button>
+        </div>
+      </section>
+      <!-- Settings -->
+      <section class="screen__game-setting">
+        <h2 class="notice">levels</h2>
+        <div class="option">
+          <button href="" class="btn btn__new-game">New game</button>
+          <button href="" class="btn btn__rule btn__second">Rules</button>
+          <button href="" class="btn btn__sound btn__second">Sound</button>
+        </div>
+        <p>
+          <span>Level:</span>
+          <input type="radio" id="0" name="level" value="newbie" checked />
+          <label for="0">newbie</label>
+          <input type="radio" id="1" name="level" value="easy" />
+          <label for="1">easy</label>
+          <input type="radio" id="2" name="level" value="normal" />
+          <label for="2">normal</label>
+          <input type="radio" id="3" name="level" value="advanced" />
+          <label for="3">advanced</label>
+          <input type="radio" id="4" name="level" value="hardcore" />
+          <label for="4">hardcore</label>
+          <input type="radio" id="5" name="level" value="god" />
+          <label for="5">god</label>
+        </p>
+      </section>
+      <main class="screen__game-menu">
+        <h2 class="notice">snakity</h2>
+        <div class="option">
+          <button href="" class="btn btn__new-game">New game</button>
+          <button href="" class="btn btn__setting btn__second">Levels</button>
+          <button href="" class="btn btn__rule btn__second">Rules</button>
+          <button href="" class="btn btn__sound btn__second">Sound</button>
+        </div>
+      </main>
+      <section class="rules">
+        <div class="rules__title">How to play game?</div>
+        <ul class="rules__contents">
+          <li class="rules__item">
+            1.
+            <i class="bx bx-left-arrow-alt btn__arrow"></i>
+            <i class="bx bx-up-arrow-alt btn__arrow"></i>
+            <i class="bx bx-right-arrow-alt btn__arrow"></i>
+            <i class="bx bx-down-arrow-alt btn__arrow"></i>
+            <span>to move snake</span>
+          </li>
+          <li class="rules__item">
+            2.
+            <span>
+              If you die, press button
+              <span class="rules__space btn btn__space">space</span>
+              to continue game
+            </span>
+          </li>
+          <li class="rules__item">
+            3.
+            <span>A void eating yourself</span>
+          </li>
+          <li class="rules__item">
+            4. Avoid hit the wall, booms, obstacles or meteorite
+          </li>
+          <li class="rules__item">
+            <h3>Note</h3>
+          </li>
+          <li class="rules__item">
+            <span>You:</span>
+            <div class="rule__snake"></div>
+          </li>
+          <li class="rules__item">
+            <span>Food:</span>
+            <div class="rule__food"></div>
+          </li>
+          <li class="rules__item">
+            <span>Boom:</span>
+            <div class="rule__boom"></div>
+          </li>
+          <li class="rules__item">
+            <span>Obstacle:</span>
+            <div class="rule__obstacles"></div>
+          </li>
+          <li class="rules__item">
+            <span>Port:</span>
+            <div class="rule__port"></div>
+          </li>
+          <li class="rules__item">
+            <span>Meteorite:</span>
+            <div class="rule__meteorite"></div>
+          </li>
+          <li class="rules__item">
+            <span>Message:</span>
+            <div class="rule__message">
+              <h4>Bonus in: 4ms</h4>
+              &sbquo;
+              <h4>9ms</h4>
+            </div>
+          </li>
+        </ul>
+        <button class="btn__okay btn btn__second">I got it</button>
+      </section>
+      <section class="author">
+        <span>Custom by</span>
+        <h3 class="author__name">Daweerboy</h3>
+      </section>
+      <section class="welcome">
+        <button class="btn btn__next btn__second">Enjoy game</button>
+      </section>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js"></script>
+    <script src="./jquery.min.js_3.5.1/cdnjs/jquery.min.js"></script>
+    <script src="./assets/js/Meteorite.js"></script>
+    <script src="./assets/js/Block.js"></script>
+    <script src="./assets/js/Port.js"></script>
+    <script src="./assets/js/Boom.js"></script>
+    <script src="./assets/js/Food.js"></script>
+    <script src="./assets/js/Snake.js"></script>
+    <script src="./assets/js/Particle.js"></script>
+    <script src="./assets/js/Main.js"></script>
+    <script>
+      $(document).ready(function () {
+        app.start();
+      });
+    </script>
+  </body>
+</html>
